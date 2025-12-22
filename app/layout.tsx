@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Pacifico } from "next/font/google";
 import "./globals.css";
+import { BASE_PATH } from './config';
 
 const pacifico = Pacifico({
   weight: '400',
@@ -67,7 +68,7 @@ export default function RootLayout({
   return (
     <html lang="ja" suppressHydrationWarning={true}>
       <head>
-        <link rel="icon" href="/images/logo.png" type="image/png" />
+        <link rel="icon" href={`${BASE_PATH}/images/logo.png`} type="image/png" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} antialiased`}

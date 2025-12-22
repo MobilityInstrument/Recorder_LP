@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
+import { BASE_PATH } from './config';
 
 // App Store URL - アプリ公開後にここを更新してください
 const APP_STORE_URL = '#'; // 例: 'https://apps.apple.com/jp/app/your-app-id'
@@ -19,7 +20,7 @@ export default function Home() {
         <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Image 
-              src="/images/logo.png" 
+              src={`${BASE_PATH}/images/logo.png`} 
               alt="録移音機" 
               width={40}
               height={40}
@@ -115,7 +116,7 @@ export default function Home() {
           </div>
           <div className="relative w-full aspect-[3/4] md:aspect-auto">
             <Image 
-              src="/images/hero.png" 
+              src={`${BASE_PATH}/images/hero.png`} 
               alt="録移音機アプリ画面" 
               width={600}
               height={800}
@@ -177,7 +178,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <Image 
-                src="/images/gps-feature.png" 
+                src={`${BASE_PATH}/images/gps-feature.png`} 
                 alt="GPS記録機能" 
                 width={600}
                 height={400}
@@ -307,7 +308,7 @@ export default function Home() {
               <div className="order-1 md:order-2 flex justify-center">
                 <div className="relative max-w-sm">
                   <Image 
-                    src="/images/record-screen.png" 
+                    src={`${BASE_PATH}/images/record-screen.png`} 
                     alt="音と移動の同時記録" 
                     width={400}
                     height={800}
@@ -321,7 +322,7 @@ export default function Home() {
               <div className="flex justify-center">
                 <div className="relative max-w-sm">
                   <Image 
-                    src="/images/playback-screen.png" 
+                    src={`${BASE_PATH}/images/playback-screen.png`} 
                     alt="再生機能" 
                     width={400}
                     height={800}
@@ -379,7 +380,7 @@ export default function Home() {
               <div className="order-1 md:order-2 flex justify-center">
                 <div className="relative max-w-sm">
                   <Image 
-                    src="/images/management-screen.png" 
+                    src={`${BASE_PATH}/images/management-screen.png`} 
                     alt="記録管理機能" 
                     width={400}
                     height={800}
@@ -723,7 +724,7 @@ export default function Home() {
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
                 <Image 
-                  src="/images/logo.png" 
+                  src={`${BASE_PATH}/images/logo.png`} 
                   alt="録移音機" 
                   width={40}
                   height={40}

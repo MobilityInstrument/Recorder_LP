@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 
 // App Store URL - アプリ公開後にここを更新してください
@@ -8,19 +9,26 @@ const APP_STORE_URL = '#'; // 例: 'https://apps.apple.com/jp/app/your-app-id'
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<'privacy' | 'terms'>('privacy');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const closeMobileMenu = () => setMobileMenuOpen(false);
 
   return (
     <div className="min-h-screen bg-white">
       <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
         <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img 
+            <Image 
               src="/images/logo.png" 
               alt="録移音機" 
-              className="w-10 h-10 object-contain"
+              width={40}
+              height={40}
+              className="object-contain"
             />
             <span className="text-xl font-bold text-gray-900">録移音機</span>
           </div>
+          
+          {/* デスクトップメニュー */}
           <div className="hidden md:flex items-center gap-8">
             <a href="#about" className="text-gray-600 hover:text-gray-900 transition-colors cursor-pointer">About</a>
             <a href="#features" className="text-gray-600 hover:text-gray-900 transition-colors cursor-pointer">特徴</a>
@@ -28,7 +36,65 @@ export default function Home() {
             <a href="#functions" className="text-gray-600 hover:text-gray-900 transition-colors cursor-pointer">機能</a>
             <a href="#download" className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors cursor-pointer whitespace-nowrap">ダウンロード</a>
           </div>
+
+          {/* モバイルハンバーガーボタン */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            aria-label="メニュー"
+          >
+            {mobileMenuOpen ? (
+              <i className="ri-close-line text-2xl text-gray-900"></i>
+            ) : (
+              <i className="ri-menu-line text-2xl text-gray-900"></i>
+            )}
+          </button>
         </nav>
+
+        {/* モバイルメニュー */}
+        <div
+          className={`md:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-lg transition-all duration-300 ease-in-out ${
+            mobileMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4'
+          }`}
+        >
+          <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4">
+            <a 
+              href="#about" 
+              onClick={closeMobileMenu}
+              className="text-gray-600 hover:text-gray-900 transition-colors cursor-pointer py-2 px-4 hover:bg-gray-50 rounded-lg"
+            >
+              About
+            </a>
+            <a 
+              href="#features" 
+              onClick={closeMobileMenu}
+              className="text-gray-600 hover:text-gray-900 transition-colors cursor-pointer py-2 px-4 hover:bg-gray-50 rounded-lg"
+            >
+              特徴
+            </a>
+            <a 
+              href="#scenes" 
+              onClick={closeMobileMenu}
+              className="text-gray-600 hover:text-gray-900 transition-colors cursor-pointer py-2 px-4 hover:bg-gray-50 rounded-lg"
+            >
+              利用シーン
+            </a>
+            <a 
+              href="#functions" 
+              onClick={closeMobileMenu}
+              className="text-gray-600 hover:text-gray-900 transition-colors cursor-pointer py-2 px-4 hover:bg-gray-50 rounded-lg"
+            >
+              機能
+            </a>
+            <a 
+              href="#download" 
+              onClick={closeMobileMenu}
+              className="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition-colors cursor-pointer text-center"
+            >
+              ダウンロード
+            </a>
+          </div>
+        </div>
       </header>
 
       <section id="home" className="pt-32 pb-20 px-6 bg-gradient-to-br from-blue-50 via-white to-purple-50 min-h-screen flex items-center">
@@ -47,11 +113,14 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <div className="relative">
-            <img 
+          <div className="relative w-full aspect-[3/4] md:aspect-auto">
+            <Image 
               src="/images/hero.png" 
               alt="録移音機アプリ画面" 
+              width={600}
+              height={800}
               className="w-full h-auto rounded-3xl shadow-2xl object-cover object-top"
+              priority
             />
           </div>
         </div>
@@ -107,9 +176,11 @@ export default function Home() {
           </div>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <img 
+              <Image 
                 src="/images/gps-feature.png" 
                 alt="GPS記録機能" 
+                width={600}
+                height={400}
                 className="w-full h-auto rounded-2xl shadow-xl object-cover object-top"
               />
             </div>
@@ -235,9 +306,11 @@ export default function Home() {
               </div>
               <div className="order-1 md:order-2 flex justify-center">
                 <div className="relative max-w-sm">
-                  <img 
+                  <Image 
                     src="/images/record-screen.png" 
                     alt="音と移動の同時記録" 
+                    width={400}
+                    height={800}
                     className="w-full h-auto rounded-3xl shadow-2xl object-cover object-top"
                   />
                 </div>
@@ -247,9 +320,11 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="flex justify-center">
                 <div className="relative max-w-sm">
-                  <img 
+                  <Image 
                     src="/images/playback-screen.png" 
                     alt="再生機能" 
+                    width={400}
+                    height={800}
                     className="w-full h-auto rounded-3xl shadow-2xl object-cover object-top"
                   />
                 </div>
@@ -303,9 +378,11 @@ export default function Home() {
               </div>
               <div className="order-1 md:order-2 flex justify-center">
                 <div className="relative max-w-sm">
-                  <img 
+                  <Image 
                     src="/images/management-screen.png" 
                     alt="記録管理機能" 
+                    width={400}
+                    height={800}
                     className="w-full h-auto rounded-3xl shadow-2xl object-cover object-top"
                   />
                 </div>
@@ -645,10 +722,12 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
-                <img 
+                <Image 
                   src="/images/logo.png" 
                   alt="録移音機" 
-                  className="w-10 h-10 object-contain"
+                  width={40}
+                  height={40}
+                  className="object-contain"
                 />
                 <span className="text-xl font-bold">録移音機</span>
               </div>
@@ -659,17 +738,17 @@ export default function Home() {
             <div>
               <h4 className="font-bold mb-4">リンク</h4>
               <ul className="space-y-2">
-                <li><a href="#about" className="text-gray-400 hover:text-white transition-colors cursor-pointer">About</a></li>
-                <li><a href="#features" className="text-gray-400 hover:text-white transition-colors cursor-pointer">特徴</a></li>
-                <li><a href="#scenes" className="text-gray-400 hover:text-white transition-colors cursor-pointer">利用シーン</a></li>
-                <li><a href="#functions" className="text-gray-400 hover:text-white transition-colors cursor-pointer">機能</a></li>
+                <li><a href="#about" className="text-gray-400 hover:text-white transition-colors cursor-pointer" aria-label="録移音機について">About</a></li>
+                <li><a href="#features" className="text-gray-400 hover:text-white transition-colors cursor-pointer" aria-label="録移音機の特徴">特徴</a></li>
+                <li><a href="#scenes" className="text-gray-400 hover:text-white transition-colors cursor-pointer" aria-label="利用シーン">利用シーン</a></li>
+                <li><a href="#functions" className="text-gray-400 hover:text-white transition-colors cursor-pointer" aria-label="主な機能">機能</a></li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold mb-4">法的情報</h4>
               <ul className="space-y-2">
-                <li><a href="#policy" className="text-gray-400 hover:text-white transition-colors cursor-pointer">プライバシーポリシー</a></li>
-                <li><a href="#policy" className="text-gray-400 hover:text-white transition-colors cursor-pointer">利用規約</a></li>
+                <li><a href="#policy" className="text-gray-400 hover:text-white transition-colors cursor-pointer" aria-label="プライバシーポリシーを読む">プライバシーポリシー</a></li>
+                <li><a href="#policy" className="text-gray-400 hover:text-white transition-colors cursor-pointer" aria-label="利用規約を読む">利用規約</a></li>
               </ul>
             </div>
           </div>

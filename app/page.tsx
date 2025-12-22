@@ -3,6 +3,9 @@
 import Link from 'next/link';
 import { useState } from 'react';
 
+// App Store URL - アプリ公開後にここを更新してください
+const APP_STORE_URL = '#'; // 例: 'https://apps.apple.com/jp/app/your-app-id'
+
 export default function Home() {
   const [activeTab, setActiveTab] = useState<'privacy' | 'terms'>('privacy');
 
@@ -12,7 +15,7 @@ export default function Home() {
         <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img 
-              src="https://public.readdy.ai/ai/img_res/db9c905d-bbda-44a2-aa4e-87c6c23af629.png" 
+              src="/images/logo.png" 
               alt="録移音機" 
               className="w-10 h-10 object-contain"
             />
@@ -38,7 +41,7 @@ export default function Home() {
               録移音機は、移動経路と音声を同時に記録し、後から再生できるモバイルアプリケーションです。散歩、旅行、フィールドワークの思い出を、音と位置情報で残しましょう。
             </p>
             <div className="flex flex-wrap gap-4">
-              <a href="#download" className="bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition-colors cursor-pointer whitespace-nowrap inline-flex items-center gap-2">
+              <a href={APP_STORE_URL} className="bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition-colors cursor-pointer whitespace-nowrap inline-flex items-center gap-2">
                 <i className="ri-apple-fill text-2xl w-6 h-6 flex items-center justify-center"></i>
                 App Storeからダウンロード
               </a>
@@ -46,7 +49,7 @@ export default function Home() {
           </div>
           <div className="relative">
             <img 
-              src="https://readdy.ai/api/search-image?query=Modern%20smartphone%20displaying%20a%20mobile%20app%20interface%20with%20a%20map%20showing%20GPS%20tracking%20route%20and%20audio%20waveform%20visualization%2C%20clean%20minimalist%20design%2C%20floating%20in%20space%20with%20soft%20shadows%2C%20professional%20product%20photography%20style%2C%20light%20blue%20and%20white%20color%20scheme%2C%20high%20quality%203D%20render&width=600&height=700&seq=hero001&orientation=portrait" 
+              src="/images/hero.png" 
               alt="録移音機アプリ画面" 
               className="w-full h-auto rounded-3xl shadow-2xl object-cover object-top"
             />
@@ -105,7 +108,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <img 
-                src="https://readdy.ai/api/search-image?query=Detailed%20GPS%20tracking%20visualization%20on%20smartphone%20screen%20showing%20precise%20location%20points%20connected%20by%20blue%20lines%20on%20interactive%20map%2C%20modern%20mobile%20app%20interface%2C%20clean%20design%20with%20real-time%20positioning%20indicators%2C%20professional%20technology%20illustration%2C%20high%20quality%20digital%20rendering&width=600&height=500&seq=feature001&orientation=landscape" 
+                src="/images/gps-feature.png" 
                 alt="GPS記録機能" 
                 className="w-full h-auto rounded-2xl shadow-xl object-cover object-top"
               />
@@ -233,7 +236,7 @@ export default function Home() {
               <div className="order-1 md:order-2 flex justify-center">
                 <div className="relative max-w-sm">
                   <img 
-                    src="https://static.readdy.ai/image/40003cecea2a848ea6b89ecadfe6fa22/34a2eb09a4f7171394ea30f072f67440.png" 
+                    src="/images/record-screen.png" 
                     alt="音と移動の同時記録" 
                     className="w-full h-auto rounded-3xl shadow-2xl object-cover object-top"
                   />
@@ -245,7 +248,7 @@ export default function Home() {
               <div className="flex justify-center">
                 <div className="relative max-w-sm">
                   <img 
-                    src="https://static.readdy.ai/image/40003cecea2a848ea6b89ecadfe6fa22/4243fbbd1de39f85e2c70879993db140.png" 
+                    src="/images/playback-screen.png" 
                     alt="再生機能" 
                     className="w-full h-auto rounded-3xl shadow-2xl object-cover object-top"
                   />
@@ -301,7 +304,7 @@ export default function Home() {
               <div className="order-1 md:order-2 flex justify-center">
                 <div className="relative max-w-sm">
                   <img 
-                    src="https://static.readdy.ai/image/40003cecea2a848ea6b89ecadfe6fa22/205db7a266b41e8b646d91b5e654183a.png" 
+                    src="/images/management-screen.png" 
                     alt="記録管理機能" 
                     className="w-full h-auto rounded-3xl shadow-2xl object-cover object-top"
                   />
@@ -319,7 +322,7 @@ export default function Home() {
             録移音機で、あなたの移動と音声を記録しましょう
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <a href="#" className="bg-white text-blue-600 px-10 py-5 rounded-full text-lg font-semibold hover:bg-blue-50 transition-colors cursor-pointer whitespace-nowrap inline-flex items-center gap-3 shadow-xl">
+            <a href={APP_STORE_URL} className="bg-white text-blue-600 px-10 py-5 rounded-full text-lg font-semibold hover:bg-blue-50 transition-colors cursor-pointer whitespace-nowrap inline-flex items-center gap-3 shadow-xl">
               <i className="ri-apple-fill text-3xl w-7 h-7 flex items-center justify-center"></i>
               App Storeからダウンロード
             </a>
@@ -643,7 +646,7 @@ export default function Home() {
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
                 <img 
-                  src="https://public.readdy.ai/ai/img_res/db9c905d-bbda-44a2-aa4e-87c6c23af629.png" 
+                  src="/images/logo.png" 
                   alt="録移音機" 
                   className="w-10 h-10 object-contain"
                 />
@@ -671,10 +674,7 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-400 text-sm">© 2024 録移音機. All rights reserved.</p>
-            <a href="https://readdy.ai/?ref=logo" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors text-sm cursor-pointer">
-              Made with Readdy
-            </a>
+            <p className="text-gray-400 text-sm">© Human Mobility Instrument 2025</p>
           </div>
         </div>
       </footer>

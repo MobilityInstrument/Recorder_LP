@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { BASE_PATH } from './config';
 
 // App Store URL - アプリ公開後にここを更新してください
@@ -11,8 +12,24 @@ const APP_STORE_URL = '#'; // 例: 'https://apps.apple.com/jp/app/your-app-id'
 export default function Home() {
   const [activeTab, setActiveTab] = useState<'privacy' | 'terms'>('privacy');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [privacyContent, setPrivacyContent] = useState<string>('');
+  const [termsContent, setTermsContent] = useState<string>('');
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
+
+  useEffect(() => {
+    // プライバシーポリシーを読み込み
+    fetch(`${BASE_PATH}/PRIVACY_POLICY.md`)
+      .then(res => res.text())
+      .then(text => setPrivacyContent(text))
+      .catch(err => console.error('Failed to load privacy policy:', err));
+
+    // 利用規約を読み込み
+    fetch(`${BASE_PATH}/TERMS_OF_SERVICE.md`)
+      .then(res => res.text())
+      .then(text => setTermsContent(text))
+      .catch(err => console.error('Failed to load terms of service:', err));
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -439,34 +456,12 @@ export default function Home() {
             </div>
             <div className="bg-white rounded-xl p-8 min-h-[400px] max-h-[600px] overflow-y-auto">
               {activeTab === 'privacy' ? (
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">プライバシーポリシー</h3>
-                  <div className="text-gray-600 leading-relaxed space-y-4">
-                    <p>詳細は下記のリンクからご確認ください。</p>
-                    <a 
-                      href="https://github.com/MobilityInstrument/Recorder_LP/blob/main/docs/PRIVACY_POLICY.md"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-block bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition-colors"
-                    >
-                      プライバシーポリシーを見る
-                    </a>
-                  </div>
+                <div className="prose prose-gray max-w-none">
+                  <ReactMarkdown>{privacyContent}</ReactMarkdown>
                 </div>
               ) : (
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">利用規約</h3>
-                  <div className="text-gray-600 leading-relaxed space-y-4">
-                    <p>詳細は下記のリンクからご確認ください。</p>
-                    <a 
-                      href="https://github.com/MobilityInstrument/Recorder_LP/blob/main/docs/TERMS_OF_SERVICE.md"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-block bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition-colors"
-                    >
-                      利用規約を見る
-                    </a>
-                  </div>
+                <div className="prose prose-gray max-w-none">
+                  <ReactMarkdown>{termsContent}</ReactMarkdown>
                 </div>
               )}
             </div>

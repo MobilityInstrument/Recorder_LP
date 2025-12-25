@@ -31,8 +31,38 @@ export default function Home() {
       .catch(err => console.error('Failed to load terms of service:', err));
   }, []);
 
+  // 構造化データ（JSON-LD）
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "録移音機",
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "iOS",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "JPY"
+    },
+    "description": "移動経路と音声を同時に記録し、後から再生できるモバイルアプリケーション。散歩、旅行、フィールドワークの思い出を音と位置情報で記録。",
+    "author": {
+      "@type": "Organization",
+      "name": "人流楽器制作集団"
+    },
+    "screenshot": `https://mobilityinstrument.github.io/Recorder_LP/images/hero.png`,
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "ratingCount": "1"
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      {/* 構造化データの埋め込み */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
         <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">

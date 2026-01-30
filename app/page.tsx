@@ -7,7 +7,7 @@ import ReactMarkdown from 'react-markdown';
 import { BASE_PATH } from './config';
 
 // App Store URL - アプリ公開後にここを更新してください
-const APP_STORE_URL = '#'; // 例: 'https://apps.apple.com/jp/app/your-app-id'
+const APP_STORE_URL = 'https://apps.apple.com/jp/app/%E9%8C%B2%E7%A7%BB%E9%9F%B3%E6%A9%9F-%E7%A7%BB%E5%8B%95%E3%81%A8%E9%9F%B3%E3%82%92%E5%90%8C%E6%99%82%E3%81%AB%E8%A8%98%E9%8C%B2%E3%81%97%E5%9C%B0%E5%9B%B3%E4%B8%8A%E3%81%A7%E6%8C%AF%E3%82%8A%E8%BF%94%E3%82%8A/id6756018708';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<'privacy' | 'terms'>('privacy');
